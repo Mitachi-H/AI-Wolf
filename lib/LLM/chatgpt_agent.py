@@ -30,6 +30,7 @@ class ChatGPTAgent(OpenAIClient):
 
         self.prompts_loaded = True
     
+    
     def talk(self, gameTextRecords: List[str]) -> str:
         # print("gameTextRecords")
         # print(gameTextRecords)
@@ -47,15 +48,16 @@ class ChatGPTAgent(OpenAIClient):
         messages.append("## あなたの役職\n"+self.role)
         messages.append("## あなたの戦術\n"+self.talk_tactics)
         messages.append("### (参考）発言例\n"+self.statements)  
-        messages.append("## ゲーム記録"+str(gameTextRecords))
-        messages.append(f"# 出力ルール（再掲）{self.talk_output_rule}")
+        messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
+        messages.append(f"# システム文（再掲） {system}")
         talk_text = self.chat(system, messages)
         print(f"Agent[0{self.agent_idx}]'s talk_text")
         print(talk_text)
         print("\n")
         talk = json.loads(talk_text)["発言"]
         return talk
-    
+
+
     def vote(self, gameTextRecords: List[str], alive:list) -> str:
         if not self.prompts_loaded:
             self.load_prompts()
@@ -71,14 +73,17 @@ class ChatGPTAgent(OpenAIClient):
         messages.append(f"## あなたの役職\n{self.role}")
         messages.append(f"## あなたの議論戦術\n{self.talk_tactics}")
         messages.append(f"## あなたの投票戦術\n{self.vote_tactics}")
-        messages.append(f"## ゲーム記録{str(gameTextRecords)}")
-        messages.append(f"# 出力ルール（再掲）{self.vote_output_rule}")
+        messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
+
+        messages.append(f"# システム文（再掲） {system}")
+
         vote_text = self.chat(system, messages)
         print(f"Agent[0{self.agent_idx}]'s vote_text")
         print(vote_text)
         print("\n")
         vote = json.loads(vote_text)["結論"]
         return json.dumps(vote,separators=(",",":"))
+
 
     def divine(self, gameTextRecords: List[str], alive:list) -> str:
         if not self.prompts_loaded:
@@ -95,14 +100,16 @@ class ChatGPTAgent(OpenAIClient):
         messages.append(f"## あなたの役職\n{self.role}")
         messages.append(f"## あなたの議論戦術\n{self.talk_tactics}")
         messages.append(f"## あなたの占い戦術\n{self.divine_tactics}")
-        messages.append(f"## ゲーム記録{str(gameTextRecords)}")
-        messages.append(f"# 出力ルール（再掲）{self.divine_output_rule}")
+        messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
+        messages.append(f"# システム文（再掲） {system}")
+
         divine_text = self.chat(system, messages)
         print(f"Agent[0{self.agent_idx}]'s divine_text")
         print(divine_text)
         print("\n")
         divine = json.loads(divine_text)["結論"]
         return json.dumps(divine,separators=(",",":"))
+
 
     def attack(self, gameTextRecords: List[str], alive:list) -> str:
         if not self.prompts_loaded:
@@ -119,8 +126,9 @@ class ChatGPTAgent(OpenAIClient):
         messages.append(f"## あなたの役職\n{self.role}")
         messages.append(f"## あなたの議論戦術\n{self.talk_tactics}")
         messages.append(f"## あなたの襲撃戦術\n{self.attack_tactics}")
-        messages.append(f"## ゲーム記録{str(gameTextRecords)}")
-        messages.append(f"# 出力ルール（再掲）{self.attack_output_rule}")
+        messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
+        messages.append(f"# システム文（再掲） {system}")
+
         attack_text = self.chat(system, messages)
         print(f"Agent[0{self.agent_idx}]'s attack_text")
         print(attack_text)
