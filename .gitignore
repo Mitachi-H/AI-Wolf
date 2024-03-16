@@ -2,4 +2,4 @@ venv/
 .git
 lib/LLM/.env
 **/__pycache__/
-res/
+res/ssh-config
