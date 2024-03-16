@@ -32,8 +32,6 @@ class ChatGPTAgent(OpenAIClient):
     
     
     def talk(self, gameTextRecords: List[str]) -> str:
-        # print("gameTextRecords")
-        # print(gameTextRecords)
         if not self.prompts_loaded:
             self.load_prompts()
 
@@ -50,6 +48,9 @@ class ChatGPTAgent(OpenAIClient):
         messages.append("### (参考）発言例\n"+self.statements)  
         messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
         messages.append(f"# システム文（再掲） {system}")
+
+        print(f"system: {system}\n messages: {messages}")
+
         talk_text = self.chat(system, messages)
         print(f"Agent[0{self.agent_idx}]'s talk_text")
         print(talk_text)
@@ -135,3 +136,10 @@ class ChatGPTAgent(OpenAIClient):
         print("\n")
         attack = json.loads(attack_text)["結論"]
         return json.dumps(attack,separators=(",",":"))
+
+if __name__ == "__main__":
+    agent = ChatGPTAgent()
+    agent.initialize_openai_client()
+    agent.set_agent_idx(1)
+    agent.set_role("村人")
+    agent.talk(gameTextRecords=[])
