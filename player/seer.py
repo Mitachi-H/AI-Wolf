@@ -38,9 +38,8 @@ class Seer(player.agent.Agent):
         return super().whisper()
 
     def divine(self) -> str:
-        data = {"agentIdx":lib.util.random_select(self.alive)}
-
-        return json.dumps(data,separators=(",",":"))
+        divine = self.ChatGPTAgent.divine(self.gameTextRecords, self.alive)
+        return divine
     
     def action(self) -> str:
 

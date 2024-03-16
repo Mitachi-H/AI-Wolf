@@ -38,9 +38,8 @@ class Werewolf(player.agent.Agent):
         return super().whisper()
 
     def attack(self):
-        data = {"agentIdx":lib.util.random_select(self.alive)}
-
-        return json.dumps(data,separators=(",",":"))
+        attack = self.ChatGPTAgent.attack(self.gameTextRecords, self.alive)
+        return attack
     
     def action(self) -> str:
 
