@@ -53,7 +53,7 @@ class ChatGPTAgent(OpenAIClient):
         print(talk_text)
         print("\n")
         talk = json.loads(talk_text)["発言"]
-        self.discussionHistory["talk"].append(talk["議論"])
+        self.discussionHistory["talk"].append(talk_text["議論"])
         return talk
 
 
@@ -77,7 +77,7 @@ class ChatGPTAgent(OpenAIClient):
         print(vote_text)
         print("\n")
         vote = json.loads(vote_text)["結論"]
-        self.discussionHistory["vote"].append(vote["議論"])
+        self.discussionHistory["vote"].append(vote_text["議論"])
         return json.dumps(vote,separators=(",",":"))
 
 
@@ -101,7 +101,7 @@ class ChatGPTAgent(OpenAIClient):
         print(divine_text)
         print("\n")
         divine = json.loads(divine_text)["結論"]
-        self.discussionHistory["divine"].append(divine["議論"])
+        self.discussionHistory["divine"].append(divine_text["議論"])
         return json.dumps(divine,separators=(",",":"))
 
 
@@ -125,7 +125,7 @@ class ChatGPTAgent(OpenAIClient):
         print(attack_text)
         print("\n")
         attack = json.loads(attack_text)["結論"]
-        self.discussionHistory["attack"].append(attack["議論"])
+        self.discussionHistory["attack"].append(attack_text["議論"])  
         return json.dumps(attack,separators=(",",":"))
 
 if __name__ == "__main__":
