@@ -9,7 +9,7 @@ class ChatGPTAgent(OpenAIClient):
         self.role = None
         self.prompts_loaded = False
 
-        self.discussionHistory = {"talk": [], "vote": [], "divine": [], "attack": []}
+        self.discussionHistory = {"talk": [""], "vote": [""], "divine": [""], "attack": [""]}
     
     def set_agent_idx(self, agent_idx: int) -> None:
         self.agent_idx = agent_idx
