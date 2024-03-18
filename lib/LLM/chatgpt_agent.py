@@ -52,7 +52,7 @@ class ChatGPTAgent(OpenAIClient):
         # print(f"system: {system}\n messages: {messages}")
 
         talk_text = self.chat(system, messages)
-        print(f"Agent[0{self.agent_idx}]'s talk_text")
+        print(f"Agent[0{self.agent_idx}]({self.role})'s talk_text")
         print(talk_text)
         print("\n")
         talk = json.loads(talk_text)["発言"]
@@ -79,7 +79,7 @@ class ChatGPTAgent(OpenAIClient):
         messages.append(f"# システム文（再掲） {system}")
 
         vote_text = self.chat(system, messages)
-        print(f"Agent[0{self.agent_idx}]'s vote_text")
+        print(f"Agent[0{self.agent_idx}]({self.role})'s vote_text")
         print(vote_text)
         print("\n")
         vote = json.loads(vote_text)["結論"]
@@ -105,7 +105,7 @@ class ChatGPTAgent(OpenAIClient):
         messages.append(f"# システム文（再掲） {system}")
 
         divine_text = self.chat(system, messages)
-        print(f"Agent[0{self.agent_idx}]'s divine_text")
+        print(f"Agent[0{self.agent_idx}]({self.role})'s divine_text")
         print(divine_text)
         print("\n")
         divine = json.loads(divine_text)["結論"]
@@ -131,7 +131,7 @@ class ChatGPTAgent(OpenAIClient):
         messages.append(f"# システム文（再掲） {system}")
 
         attack_text = self.chat(system, messages)
-        print(f"Agent[0{self.agent_idx}]'s attack_text")
+        print(f"Agent[0{self.agent_idx}]({self.role})'s attack_text")
         print(attack_text)
         print("\n")
         attack = json.loads(attack_text)["結論"]
