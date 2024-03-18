@@ -45,7 +45,7 @@ class ChatGPTAgent(OpenAIClient):
         messages.append("## 役職の詳細\n"+self.role_ex)
         messages.append("## あなたの役職\n"+self.role)
         messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
-        messages.append("## 過去の自己議論"+"\n".join(self.discussionHistory["talk"]))
+        messages.append("## 最後の自分の発言の前に考えたこと"+"\n".join(self.discussionHistory["talk"][-1]))
         messages.append(f"# システム文（再掲） {system}")
 
         talk_text = self.chat(system, messages)
@@ -69,7 +69,7 @@ class ChatGPTAgent(OpenAIClient):
         messages.append(f"## 役職の詳細\n{self.role_ex}")
         messages.append(f"## あなたの役職\n{self.role}")
         messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
-        messages.append("## 過去の自己議論"+"\n".join(self.discussionHistory["talk"]))
+        messages.append("## 最後の自分の発言の前に考えたこと"+"\n".join(self.discussionHistory["talk"][-1]))
         messages.append(f"# システム文（再掲） {system}")
 
         vote_text = self.chat(system, messages)
@@ -93,7 +93,7 @@ class ChatGPTAgent(OpenAIClient):
         messages.append(f"## 役職の詳細\n{self.role_ex}")
         messages.append(f"## あなたの役職\n{self.role}")
         messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
-        messages.append("## 過去の自己議論"+"\n".join(self.discussionHistory["talk"]))
+        messages.append("## 最後の自分の発言の前に考えたこと"+"\n".join(self.discussionHistory["talk"][-1]))
         messages.append(f"# 命令文（再掲）\n{system}")
 
         divine_text = self.chat(system, messages)
@@ -117,7 +117,7 @@ class ChatGPTAgent(OpenAIClient):
         messages.append(f"## 役職の詳細\n{self.role_ex}")
         messages.append(f"## あなたの役職\n{self.role}")
         messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
-        messages.append("## 過去の自己議論"+"\n".join(self.discussionHistory["talk"]))
+        messages.append("## 最後の自分の発言の前に考えたこと"+"\n".join(self.discussionHistory["talk"][-1]))
         messages.append(f"# 命令文（再掲）\n{system}")
 
         attack_text = self.chat(system, messages)
