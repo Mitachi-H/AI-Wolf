@@ -38,14 +38,6 @@ if __name__ == "__main__":
     
     sock.connect()
 
-<<<<<<< HEAD
-    received = None
-    
-    for _ in range(inifile.getint("game","num")):
-        received = main(sock=sock, inifile=inifile, received=received, name=inifile.get("agent","name1"))
-    
-    sock.close()
-=======
     while True:
     
         # connect to server or listen client
@@ -65,4 +57,3 @@ if __name__ == "__main__":
 
         if not inifile.getboolean("connection","keep_connection"):
             break
->>>>>>> a27cba698212f361eb661505b50590bafb75a428
