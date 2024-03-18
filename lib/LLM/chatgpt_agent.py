@@ -49,7 +49,7 @@ class ChatGPTAgent(OpenAIClient):
         messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
         messages.append(f"# システム文（再掲） {system}")
 
-        print(f"system: {system}\n messages: {messages}")
+        # print(f"system: {system}\n messages: {messages}")
 
         talk_text = self.chat(system, messages)
         print(f"Agent[0{self.agent_idx}]'s talk_text")
