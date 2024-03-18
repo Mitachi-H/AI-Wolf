@@ -1,5 +1,4 @@
 Host aiwolf-server
-<<<<<<< HEAD
 HostName 133.167.32.100
 User kakkun
 IdentityFile ~/.ssh/id_rsa_aiwolf
@@ -8,13 +7,3 @@ RemoteForward 50016 localhost:50002
 RemoteForward 50017 localhost:50003
 RemoteForward 50018 localhost:50004
 RemoteForward 50019 localhost:50005
-=======
-HostName [対戦サーバのipアドレス]
-User [user name]
-IdentityFile ~/.ssh/id_rsa
-RemoteForward [remote_port1] localhost:[local_port1]
-RemoteForward [remote_port2] localhost:[local_port2]
-RemoteForward [remote_port3] localhost:[local_port3]
-RemoteForward [remote_port4] localhost:[local_port4]
-RemoteForward [remote_port5] localhost:[local_port5]
->>>>>>> a27cba698212f361eb661505b50590bafb75a428
