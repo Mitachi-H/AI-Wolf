@@ -204,6 +204,11 @@ $ pip install -r res/requirements.txt	# ライブラリのインストール
 
 `buffer`: 対戦サーバとの送受信の際に利用されるバッファサイズです。
 
+<<<<<<< HEAD
+=======
+`keep_connection`: **本戦の場合のみ** `true`にしてください。
+
+>>>>>>> a27cba698212f361eb661505b50590bafb75a428
 ### [ssh-server]
 `config_path`:後述するSSH接続の設定を書いたファイルのパスです。\
 デフォルトでは`res/ssh-config`となっていますが、sshのconfigに書かれた方はそのパスを指定されても問題ありません。

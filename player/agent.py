@@ -1,9 +1,13 @@
 import configparser
 import json
 from lib import util
+<<<<<<< HEAD
 from lib.LLM.chatgpt_agent import ChatGPTAgent as ChatGPTAgent_class
 from lib.AIWolf.commands import AIWolfCommand
 from typing import List
+=======
+from lib.AIWolf.commands import AIWolfCommand
+>>>>>>> a27cba698212f361eb661505b50590bafb75a428
 
 class Agent:
     def __init__(self, inifile:configparser.ConfigParser, name:str) -> None:
@@ -12,6 +16,7 @@ class Agent:
        self.received = []
        self.gameContinue = True
 
+<<<<<<< HEAD
        self.gameInfo = None
        self.gameTextRecords = []
        self.alive = []
@@ -23,6 +28,11 @@ class Agent:
        self.ChatGPTAgent = ChatGPTAgent_class()
        self.ChatGPTAgent_initialized = False
 
+=======
+       randomTalk = inifile.get("randomTalk","path")
+       _ = util.check_config(randomTalk)
+       
+>>>>>>> a27cba698212f361eb661505b50590bafb75a428
        self.comments = util.read_text(randomTalk)
     
     def set_received(self, received:list) -> None:
@@ -159,6 +169,7 @@ class Agent:
         return self.role
     
     def talk(self) -> str:
+<<<<<<< HEAD
         if self.gameInfo["day"] in [0]:
             return "Over"
         # print(f"{self.name} talking")
@@ -168,6 +179,14 @@ class Agent:
     def vote(self) -> str:
         vote = self.ChatGPTAgent.vote(self.gameTextRecords, self.alive)
         return vote
+=======
+        return util.random_select(self.comments)
+
+    def vote(self) -> str:
+        data = {"agentIdx":util.random_select(self.alive)}
+
+        return json.dumps(data,separators=(",",":"))
+>>>>>>> a27cba698212f361eb661505b50590bafb75a428
 
     def whisper(self) -> None:
         pass
@@ -176,6 +195,10 @@ class Agent:
         self.gameContinue = False
 
     def action(self) -> str:
+<<<<<<< HEAD
+=======
+
+>>>>>>> a27cba698212f361eb661505b50590bafb75a428
         if AIWolfCommand.is_initialize(request=self.request):
             self.initialize()
         elif AIWolfCommand.is_name(request=self.request):
