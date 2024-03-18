@@ -44,7 +44,7 @@ class ChatGPTAgent(OpenAIClient):
         messages = []
         messages.append("## 役職の詳細\n"+self.role_ex)
         messages.append("## あなたの役職\n"+self.role)
-        messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
+        messages.append("## ゲーム記録"+self.reducedGameTextRecords(gameTextRecords))
         messages.append("## 最後の自分の発言の前に考えたこと"+"\n".join(self.discussionHistory["talk"][-1]))
         messages.append(f"# システム文（再掲） {system}")
 
@@ -68,7 +68,7 @@ class ChatGPTAgent(OpenAIClient):
         messages = []
         messages.append(f"## 役職の詳細\n{self.role_ex}")
         messages.append(f"## あなたの役職\n{self.role}")
-        messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
+        messages.append("## ゲーム記録"+self.reducedGameTextRecords(gameTextRecords))
         messages.append("## 最後の自分の発言の前に考えたこと"+"\n".join(self.discussionHistory["talk"][-1]))
         messages.append(f"# システム文（再掲） {system}")
 
@@ -92,7 +92,7 @@ class ChatGPTAgent(OpenAIClient):
         messages = []
         messages.append(f"## 役職の詳細\n{self.role_ex}")
         messages.append(f"## あなたの役職\n{self.role}")
-        messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
+        messages.append("## ゲーム記録"+self.reducedGameTextRecords(gameTextRecords))
         messages.append("## 最後の自分の発言の前に考えたこと"+"\n".join(self.discussionHistory["talk"][-1]))
         messages.append(f"# 命令文（再掲）\n{system}")
 
@@ -116,7 +116,7 @@ class ChatGPTAgent(OpenAIClient):
         messages = []
         messages.append(f"## 役職の詳細\n{self.role_ex}")
         messages.append(f"## あなたの役職\n{self.role}")
-        messages.append("## ゲーム記録"+"\n".join(gameTextRecords))
+        messages.append("## ゲーム記録"+self.reducedGameTextRecords(gameTextRecords))
         messages.append("## 最後の自分の発言の前に考えたこと"+"\n".join(self.discussionHistory["talk"][-1]))
         messages.append(f"# 命令文（再掲）\n{system}")
 
@@ -127,6 +127,13 @@ class ChatGPTAgent(OpenAIClient):
         attack = json.loads(attack_text)["結論"]
         self.discussionHistory["attack"].append(json.loads(attack_text)["議論"])  
         return json.dumps(attack,separators=(",",":"))
+
+    def reducedGameTextRecords(self, gameTextRecords: List[str], maxLength = 1000):
+        # gameTextRecordsを文字列として返す。ただし、文字数がmaxLengthを超える場合は、最後の方を優先する。
+        str_gameTextRecords = "\n".join(gameTextRecords)
+        if len(str_gameTextRecords) > maxLength:
+            str_gameTextRecords = str_gameTextRecords[-maxLength:]
+        return str_gameTextRecords
 
 if __name__ == "__main__":
     agent = ChatGPTAgent()
