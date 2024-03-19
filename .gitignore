@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 venv/
 .git
 lib/LLM/.env
 **/__pycache__/
 res/ssh-config
-=======
-__pycache__/
-venv/
-.git
->>>>>>> a27cba698212f361eb661505b50590bafb75a428
